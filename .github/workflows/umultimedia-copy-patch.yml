@@ -1,0 +1,42 @@
+name: UMultimedia copy patch
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/umultimedia-copy-patch.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Update homepage copy
+        shell: python
+        run: |
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text()
+          old1 = '<div class="eyebrow" data-en="LET US HELP" data-es="TE AYUDAMOS">LET US HELP</div>'
+          new1 = '<div class="eyebrow" data-en="SHOW UP STRONGER ON..." data-es="DESTACA MÁS EN...">SHOW UP STRONGER ON...</div>'
+          old2 = '<div class="searchHead" data-en="Already have a website or Google profile?" data-es="¿Ya tienes página o perfil de Google?">Already have a website or Google profile?</div><p class="searchSub" data-en="Need a domain too? Search your .com right here." data-es="¿También necesitas dominio? Busca tu .com aquí mismo.">Need a domain too? Search your .com right here.</p><div class="searchLabel" data-en="SEARCH YOUR .COM" data-es="BUSCA TU .COM">SEARCH YOUR .COM</div>'
+          new2 = '<div class="searchHead" data-en="Need a domain? Search your .com here." data-es="¿Necesitas un dominio? Busca tu .com aquí.">Need a domain? Search your .com here.</div>'
+          if old1 not in s:
+              raise SystemExit('Google eyebrow text not found')
+          if old2 not in s:
+              raise SystemExit('Domain search text block not found')
+          s = s.replace(old1, new1, 1).replace(old2, new2, 1)
+          p.write_text(s)
+      - name: Commit homepage update and remove temporary workflow
+        run: |
+          rm .github/workflows/umultimedia-copy-patch.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Polish Google hero and domain search copy"
+          git push origin main
