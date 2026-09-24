@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="Explore sample vehicle payments and search JKK Auto Group's concept inventory.">
+  <title>Vehicle Payment Calculator | JKK Auto Group</title>
+  <link rel="stylesheet" href="loan-calculator.css">
+  <script src="loan-math.js" defer></script>
+  <script src="loan-calculator.js" defer></script>
+</head>
+<body>
+  <div class="demo" id="demo">WEBSITE CONCEPT · INVENTORY, PRICES AND FINANCING FIGURES ARE EXAMPLES</div>
+  <header class="header">
+    <div class="wrap nav">
+      <a class="brand" href="./" id="brand"><img src="assets/jkk-logo.jpeg" alt="JKK Auto Group logo"><span>JKK AUTO GROUP<small id="brandSub">DEALERSHIP</small></span></a>
+      <div class="navActions"><a class="navInventory" id="navInventory" href="./#inventory">Inventory</a><a class="phone" href="tel:+17864055416">786-405-5416</a><button class="language" id="langToggle" type="button" aria-label="Ver en español">ESPAÑOL</button></div>
+    </div>
+  </header>
+  <main>
+    <section class="calculatorSection wrap" aria-labelledby="pageTitle">
+      <div class="intro"><p class="eyebrow" id="eyebrow">EXPLORE YOUR OPTIONS</p><h1 id="pageTitle">Vehicle payment calculator</h1><p id="intro">Change the numbers to see an estimated monthly payment. No application or credit check is involved.</p></div>
+      <div class="calculatorLayout">
+        <form id="calculator" class="panel" novalidate>
+          <div class="fieldHead"><h2 id="inputsTitle">Estimate a payment</h2><span class="exampleTag" id="exampleTag">Example figures</span></div>
+          <p class="selected" id="selectedVehicle" aria-live="polite"></p>
+          <div class="fields">
+            <label for="price"><span id="priceLabel">Vehicle price</span><div class="inputWithPrefix"><span aria-hidden="true">$</span><input id="price" name="price" type="number" min="0" max="1000000" step="100" value="25000" required></div></label>
+            <label for="down"><span id="downLabel">Down payment</span><div class="inputWithPrefix"><span aria-hidden="true">$</span><input id="down" name="down" type="number" min="0" max="1000000" step="100" value="3000" required></div></label>
+            <label for="trade"><span id="tradeLabel">Trade-in value</span><div class="inputWithPrefix"><span aria-hidden="true">$</span><input id="trade" name="trade" type="number" min="0" max="1000000" step="100" value="0" required></div></label>
+            <label for="tradeOwed"><span id="owedLabel">Amount owed on trade-in</span><div class="inputWithPrefix"><span aria-hidden="true">$</span><input id="tradeOwed" name="tradeOwed" type="number" min="0" max="1000000" step="100" value="0" required></div></label>
+            <label for="taxFees"><span id="feesLabel">Estimated taxes &amp; fees</span><div class="inputWithPrefix"><span aria-hidden="true">$</span><input id="taxFees" name="taxFees" type="number" min="0" max="1000000" step="100" value="0" required></div></label>
+            <label for="apr"><span id="aprLabel">Estimated APR</span><div class="inputWithPrefix"><input id="apr" name="apr" type="number" min="0" max="40" step="0.1" value="8" required><span aria-hidden="true">%</span></div></label>
+            <label for="months"><span id="termLabel">Loan term</span><select id="months" name="months"><option value="36">36 months</option><option value="48">48 months</option><option value="60" selected>60 months</option><option value="72">72 months</option><option value="84">84 months</option></select></label>
+          </div>
+          <p id="error" class="error" role="alert" hidden></p>
+        </form>
+        <aside class="result panel" aria-live="polite" aria-atomic="true">
+          <p class="eyebrow" id="resultEyebrow">YOUR ESTIMATE</p><p class="payment" id="payment">$0</p><p id="perMonth">Estimated per month</p>
+          <dl><div><dt id="financedLabel">Amount financed</dt><dd id="financed">$0</dd></div><div><dt id="interestLabel">Total interest</dt><dd id="interest">$0</dd></div><div><dt id="totalLabel">Total loan payments</dt><dd id="total">$0</dd></div></dl>
+          <p class="disclaimer" id="disclaimer">For illustration only. APR is entered by you, not an offer or approval from JKK. Taxes and fees are not included unless you enter them. Insurance, maintenance and other costs are not included. Confirm all terms with a lender or dealer.</p>
+          <a class="callButton" href="tel:+17864055416" id="callButton">Call JKK · 786-405-5416</a>
+        </aside>
+      </div>
+    </section>
+    <section class="inventorySection" id="browse" aria-labelledby="browseTitle"><div class="wrap">
+      <div class="sectionHead"><div><p class="eyebrow" id="browseEyebrow">KEEP EXPLORING</p><h2 id="browseTitle">Find another vehicle</h2><p id="browseCopy">Search the sample inventory, then use a vehicle's price in the calculator.</p></div><span id="count"></span></div>
+      <div class="searchBar" role="search"><label class="sr" id="searchLabel" for="search">Search vehicles</label><input id="search" type="search" placeholder="Search make, model, or type…"><label class="sr" for="make" id="makeLabel">Make</label><select id="make"><option value="">All makes</option></select><label class="sr" for="type" id="typeLabel">Type</label><select id="type"><option value="">All types</option><option value="Truck">Truck</option><option value="Van">Van</option><option value="Sedan">Sedan</option></select><button id="clear" type="button">Clear</button></div>
+      <div id="carGrid" class="carGrid"></div><p id="empty" class="empty" hidden>No vehicles match your search.</p>
+    </div></section>
+  </main>
+  <footer class="footer"><div class="wrap"><span id="footerText">© 2026 JKK Auto Group · Website concept</span><span>Site by <a href="https://umultimedia.net/">UMultimedia.net</a></span></div></footer>
+</body>
+</html>
